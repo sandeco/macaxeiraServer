@@ -7,6 +7,7 @@
   
   	<properties>
 		<spring.version>4.0.1.RELEASE</spring.version>
+		<tomcat.version></tomcat.version>
 	</properties>
 	<dependencies>
 		<dependency>
