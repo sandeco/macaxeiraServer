@@ -1,14 +1,23 @@
 package com.macaxeira.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 
 
 /**
  * The persistent class for the categoria database table.
  * 
  */
+@JsonAutoDetect
 @Entity
 @NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
 public class Categoria implements Serializable {
