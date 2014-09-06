@@ -9,18 +9,20 @@
 	<properties>
 		<spring.version>4.0.1.RELEASE</spring.version>
 		<tomcat.version>8.0-SNAPSHOT</tomcat.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
-	
-	
+
+
 	<dependencies>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-	
-	
+
+
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -81,9 +83,42 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- BANCO DE DADOS -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.32</version>
+		</dependency>
+
+		<!-- HIBERNATE/JPA -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- JSON -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+
 	</dependencies>
 
 
+	<!-- REPOSITÓRIOS -->
 	<repositories>
 		<repository>
 			<id>apache-snapshots</id>
@@ -94,7 +129,7 @@
 
 
 
-
+	<!-- BUILD -->
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
