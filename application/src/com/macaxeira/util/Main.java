@@ -10,14 +10,12 @@ public class Main {
 		
 		
 		Categoria c = new Categoria();
-		c.setNome("Carnes");
+		c.setNome("hummm");
 		
 		RepositorioCategoria repCat = new CategoriaDAOImpl();
 		
 		repCat.create(c);
 		
-		
-
 	}
 
 }

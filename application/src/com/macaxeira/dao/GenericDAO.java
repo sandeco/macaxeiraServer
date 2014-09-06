@@ -24,7 +24,9 @@ public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, I
 
 	@Override
 	public T create(T entidade) {
+		em.getTransaction().begin();
 		em.persist(entidade);
+		em.getTransaction().commit();
 		return null;
 	}
 
