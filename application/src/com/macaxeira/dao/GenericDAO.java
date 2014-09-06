@@ -4,22 +4,27 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import com.macaxeira.util.JPAUtil;
+
 public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, ID> {
 	
-	
+	EntityManager em;
 	private Class<T> classePersistente;
 	
 	
 	//CONSTRUTOR DA CLASSE DAO GENERICA
 	@SuppressWarnings("unchecked")
 	public GenericDAO() {
+		em = JPAUtil.getEntityManager();
 		this.classePersistente = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
 
 	@Override
 	public T create(T entidade) {
-		// TODO Auto-generated method stub
+		em.persist(entidade);
 		return null;
 	}
 
