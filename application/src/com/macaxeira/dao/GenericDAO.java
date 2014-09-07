@@ -24,15 +24,17 @@ public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, I
 
 	@Override
 	public T create(T entidade) {
+		em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
 		em.persist(entidade);
 		em.getTransaction().commit();
+		em.close();
 		return entidade;
 	}
 
 	@Override
 	public T read(T entidade) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -43,15 +45,24 @@ public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, I
 	}
 
 	@Override
-	public void delete(T entidade) {
-		// TODO Auto-generated method stub
+	public void delete(T entidade) throws Exception{
+		em = JPAUtil.getEntityManager();
+		
+		try {
+			em.remove(entidade);
+		} catch (Exception e) {
+			throw new Exception("Erro ao excluir " + entidade.getClass().getSimpleName());			
+		}
 		
 	}
 
 	@Override
 	public T findById(ID id) {
-		// TODO Auto-generated method stub
-		return null;
+		em = JPAUtil.getEntityManager();
+		T entity = em.find(classePersistente, id);
+		//em.detach(entity);
+		//em.close();
+		return entity;
 	}
 
 	@Override

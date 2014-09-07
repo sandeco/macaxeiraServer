@@ -28,9 +28,7 @@ public class JsonProcessor {
 			mapper = null;
 		}
 		
-		
-		
-		
+	
 		return "\"" + entity.getClass().getSimpleName() + "\":"+ result;
 
 	}

@@ -3,7 +3,9 @@ package com.macaxeira.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 @JsonAutoDetect
 @Entity
 @NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
-public class Categoria implements Serializable {
+public class Categoria implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,8 +32,8 @@ public class Categoria implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Produto
-	@OneToMany(mappedBy="categoria")
-	private List<Produto> produtos;
+	@OneToMany(mappedBy="categoria",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Produto> produtos = null;
 
 	public Categoria() {
 	}
@@ -73,5 +75,17 @@ public class Categoria implements Serializable {
 
 		return produto;
 	}
+
+	
+
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	
+	
+	
+	
 
 }

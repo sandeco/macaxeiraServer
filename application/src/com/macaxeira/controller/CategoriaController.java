@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.macaxeira.dao.RepositorioCategoria;
 import com.macaxeira.model.Categoria;
 import com.macaxeira.util.JsonProcessor;
@@ -33,30 +34,47 @@ public class CategoriaController {
 
 
 	@RequestMapping("/read")
-	public @ResponseBody String read(@RequestParam String categoria){
+	public @ResponseBody String read(@RequestParam int id){
+		
+		Categoria categoria = categoriaDao.findById(id);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(categoria);
+		
+		return json;
 		
 		
-		
-		String json = "{ \"id\" : 16, \"nome\" : \"Teste autowired\", \"produtos\" : null }";
-		
-		Categoria c = (Categoria) JsonProcessor.jsonToEntity(json, Categoria.class);
-		
-		
-		return c.getNome();
 	}
 
 
 
 	@RequestMapping("/update")
 	public @ResponseBody String update(){
-		return "update";
+		String json = "{ \"id\" : 16, \"nome\" : \"Teste autowired\", \"produtos\" : null }";
+		
+		Gson gson = new Gson();
+		Categoria c = gson.fromJson(json, Categoria.class);
+		
+		return c.getNome();
 	}
 
 
 
 	@RequestMapping("/delete")
-	public @ResponseBody String delete(){
-		return "delete";
+	public @ResponseBody String delete(@RequestParam int id){
+		
+		Categoria categoria = categoriaDao.findById(id);
+		
+		String retorno="true";
+		
+		try {
+			categoriaDao.delete(categoria);
+		} catch (Exception e) {
+			retorno = e.getMessage();
+		}	
+		
+		
+		return retorno;
 	}
 
 	
