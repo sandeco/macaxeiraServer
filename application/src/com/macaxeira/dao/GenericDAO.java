@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.macaxeira.util.JPAUtil;
 
@@ -32,43 +33,62 @@ public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, I
 		return entidade;
 	}
 
+	
 	@Override
-	public T read(T entidade) {
-		
+	public T read(T entidade) {	
 		return null;
 	}
 
+	
 	@Override
 	public T update(T entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		em = JPAUtil.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(entidade);
+		em.getTransaction().commit();
+		return entidade;
+	}
+	
+	
+	@Override
+	public void delete(ID id) throws Exception {
+		try {
+			em = JPAUtil.getEntityManager();
+			em.getTransaction().begin();
+			T entity = em.find(classePersistente, id);
+			em.remove(entity);
+			em.getTransaction().commit();
+			
+		} catch (Exception e) {
+			throw e;
+		}finally{
+			em.close();
+		}
 	}
 
-	@Override
-	public void delete(T entidade) throws Exception{
-		em = JPAUtil.getEntityManager();
-		
-		try {
-			em.remove(entidade);
-		} catch (Exception e) {
-			throw new Exception("Erro ao excluir " + entidade.getClass().getSimpleName());			
-		}
-		
-	}
+	
 
 	@Override
 	public T findById(ID id) {
 		em = JPAUtil.getEntityManager();
 		T entity = em.find(classePersistente, id);
-		//em.detach(entity);
-		//em.close();
+
 		return entity;
 	}
 
+	
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		em = JPAUtil.getEntityManager();
+		
+		Query query = em.createQuery("SELECT e FROM Categoria e");
+	    return  query.getResultList();
+		
 	}
+
+
+	
 
 }
