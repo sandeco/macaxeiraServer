@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.macaxeira.model.Categoria;
 
 @Repository
-public interface RepositorioCategoria extends Repositorio<Categoria,Integer> {
+public interface CategoriaRepositorio extends Repositorio<Categoria,Integer> {
 
 	
 }

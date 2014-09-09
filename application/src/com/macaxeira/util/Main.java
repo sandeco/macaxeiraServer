@@ -1,7 +1,7 @@
 package com.macaxeira.util;
 
 import com.macaxeira.dao.CategoriaDAOImpl;
-import com.macaxeira.dao.RepositorioCategoria;
+import com.macaxeira.dao.CategoriaRepositorio;
 import com.macaxeira.model.Categoria;
 
 public class Main {
@@ -12,7 +12,7 @@ public class Main {
 		Categoria c = new Categoria();
 		c.setNome("hummm");
 		
-		RepositorioCategoria repCat = new CategoriaDAOImpl();
+		CategoriaRepositorio repCat = new CategoriaDAOImpl();
 		
 		repCat.create(c);
 		

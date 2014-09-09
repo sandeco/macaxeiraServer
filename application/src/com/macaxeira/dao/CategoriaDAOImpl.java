@@ -6,6 +6,6 @@ import com.macaxeira.model.Categoria;
 
 @Repository
 public class CategoriaDAOImpl extends GenericDAO<Categoria, Integer> implements
-		RepositorioCategoria {
+		CategoriaRepositorio {
 
 }

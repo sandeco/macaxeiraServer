@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.macaxeira.dao.RepositorioCategoria;
+import com.macaxeira.dao.CategoriaRepositorio;
 import com.macaxeira.model.Categoria;
 
 @Controller
@@ -17,7 +17,7 @@ import com.macaxeira.model.Categoria;
 public class CategoriaController {
 
 	@Autowired
-	private RepositorioCategoria categoriaDao;
+	private CategoriaRepositorio categoriaDao;
 
 	// Processado Google para Json
 	Gson gson = new Gson();
@@ -36,9 +36,6 @@ public class CategoriaController {
 		
 	}
 
-
-
-	
 	
 	@RequestMapping("/read")
 	public @ResponseBody String read(@RequestParam int id){
