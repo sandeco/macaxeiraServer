@@ -22,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect;
 @JsonAutoDetect
 @Entity
 @NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
-public class Categoria implements Serializable, Cloneable {
+public class Categoria implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id

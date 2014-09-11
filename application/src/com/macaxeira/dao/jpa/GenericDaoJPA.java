@@ -1,4 +1,4 @@
-package com.macaxeira.dao;
+package com.macaxeira.dao.jpa;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -7,9 +7,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.macaxeira.dao.interfaces.GenericDAO;
 import com.macaxeira.util.JPAUtil;
 
-public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, ID> {
+public abstract class GenericDaoJPA<T, ID extends Serializable>  implements GenericDAO<T, ID> {
 	
 	EntityManager em;
 	private Class<T> classePersistente;
@@ -17,7 +18,7 @@ public class GenericDAO<T, ID extends Serializable>  implements Repositorio<T, I
 	
 	//CONSTRUTOR DA CLASSE DAO GENERICA
 	@SuppressWarnings("unchecked")
-	public GenericDAO() {
+	public GenericDaoJPA() {
 		em = JPAUtil.getEntityManager();
 		this.classePersistente = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}

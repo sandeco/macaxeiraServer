@@ -1,9 +1,9 @@
-package com.macaxeira.dao;
+package com.macaxeira.dao.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface Repositorio<T, ID extends Serializable> {
+public interface GenericDAO<T, ID extends Serializable> {
 	
 	
 	public T create(T entidade);
