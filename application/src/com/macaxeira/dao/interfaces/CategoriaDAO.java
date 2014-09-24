@@ -1,11 +1,11 @@
-package com.macaxeira.dao;
+package com.macaxeira.dao.interfaces;
 
 import org.springframework.stereotype.Repository;
 
 import com.macaxeira.model.Categoria;
 
 @Repository
-public interface RepositorioCategoria extends Repositorio<Categoria,Integer> {
+public interface CategoriaDAO extends GenericDAO<Categoria,Integer> {
 
 	
 }
