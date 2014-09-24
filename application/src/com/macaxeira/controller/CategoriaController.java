@@ -26,10 +26,9 @@ public class CategoriaController {
 	
 
 	@RequestMapping("/create")
-	public @ResponseBody String create(){
+	public @ResponseBody String create(@RequestParam String categoriaJson){
 		
-		Categoria categoria = new Categoria();
-		categoria.setNome("Teste autowired");
+		Categoria categoria = gson.fromJson(categoriaJson, Categoria.class);
 		categoriaDao.create(categoria);
 		
 		return gson.toJson(categoria);
@@ -49,10 +48,10 @@ public class CategoriaController {
 
 
 	@RequestMapping("/update")
-	public @ResponseBody String update(){
+	public @ResponseBody String update(@RequestParam String categoriaJson){
 		
-		Categoria categoria = categoriaDao.findById(5);	
-		categoria.setNome("sanderson");
+		Categoria categoria = gson.fromJson(categoriaJson, Categoria.class);	
+		
 		categoriaDao.update(categoria);
 	
 		return gson.toJson(categoria);

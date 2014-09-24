@@ -7,12 +7,12 @@ import java.util.List;
 
 
 /**
- * The persistent class for the categoria database table.
+ * The persistent class for the adicional database table.
  * 
  */
 @Entity
-@NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
-public class Categoria implements Serializable {
+@NamedQuery(name="Adicional.findAll", query="SELECT a FROM Adicional a")
+public class Adicional implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,11 +27,17 @@ public class Categoria implements Serializable {
 	@Lob
 	private String nome;
 
-	//bi-directional many-to-one association to Produto
-	@OneToMany(mappedBy="categoria")
+	private double preco;
+
+	//bi-directional many-to-many association to ItemPedido
+	@ManyToMany(mappedBy="adicionals")
+	private List<ItemPedido> itemPedidos;
+
+	//bi-directional many-to-many association to Produto
+	@ManyToMany(mappedBy="adicionals")
 	private List<Produto> produtos;
 
-	public Categoria() {
+	public Adicional() {
 	}
 
 	public int getId() {
@@ -66,26 +72,28 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	public double getPreco() {
+		return this.preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	public List<ItemPedido> getItemPedidos() {
+		return this.itemPedidos;
+	}
+
+	public void setItemPedidos(List<ItemPedido> itemPedidos) {
+		this.itemPedidos = itemPedidos;
+	}
+
 	public List<Produto> getProdutos() {
 		return this.produtos;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
-	}
-
-	public Produto addProduto(Produto produto) {
-		getProdutos().add(produto);
-		produto.setCategoria(this);
-
-		return produto;
-	}
-
-	public Produto removeProduto(Produto produto) {
-		getProdutos().remove(produto);
-		produto.setCategoria(null);
-
-		return produto;
 	}
 
 }
