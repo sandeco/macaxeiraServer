@@ -28,11 +28,29 @@ public class Ingrediente implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-many association to ItemPedido
-	@ManyToMany(mappedBy="ingredientes")
+	@ManyToMany
+	@JoinTable(
+		name="ingrediente_excluido"
+		, joinColumns={
+			@JoinColumn(name="Ingrediente_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Item_Pedido_id")
+			}
+		)
 	private List<ItemPedido> itemPedidos;
 
 	//bi-directional many-to-many association to Produto
-	@ManyToMany(mappedBy="ingredientes")
+	@ManyToMany
+	@JoinTable(
+		name="produto_has_ingrediente"
+		, joinColumns={
+			@JoinColumn(name="Ingrediente_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Produto_id")
+			}
+		)
 	private List<Produto> produtos;
 
 	public Ingrediente() {

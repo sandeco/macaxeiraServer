@@ -17,71 +17,45 @@ public class ItemPedido implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int item_Pedido_id;
-
-	private double preco;
-
-	//bi-directional many-to-many association to Adicional
-	@ManyToMany
-	@JoinTable(
-		name="item_pedido_has_adicional"
-		, joinColumns={
-			@JoinColumn(name="Item_Pedido_Item_Pedido_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Adicional__id")
-			}
-		)
-	private List<Adicional> adicionals;
+	@Column(name="_id")
+	private int id;
 
 	//bi-directional many-to-many association to Ingrediente
-	@ManyToMany
-	@JoinTable(
-		name="ingrediente_excluido"
-		, joinColumns={
-			@JoinColumn(name="Item_Pedido_Item_Pedido_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Ingrediente_id")
-			}
-		)
+	@ManyToMany(mappedBy="itemPedidos")
 	private List<Ingrediente> ingredientes;
-
-	//bi-directional many-to-one association to Pedido
-	@ManyToOne
-	@JoinColumn(name="Pedido_id")
-	private Pedido pedido;
 
 	//bi-directional many-to-one association to Produto
 	@ManyToOne
 	@JoinColumn(name="Produto_id")
 	private Produto produto;
 
+	//bi-directional many-to-one association to Pedido
+	@ManyToOne
+	@JoinColumn(name="Pedido_id")
+	private Pedido pedido;
+
+	//bi-directional many-to-many association to Adicional
+	@ManyToMany
+	@JoinTable(
+		name="item_pedido_has_adicional"
+		, joinColumns={
+			@JoinColumn(name="Item_Pedido_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Adicional_id")
+			}
+		)
+	private List<Adicional> adicionals;
+
 	public ItemPedido() {
 	}
 
-	public int getItem_Pedido_id() {
-		return this.item_Pedido_id;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setItem_Pedido_id(int item_Pedido_id) {
-		this.item_Pedido_id = item_Pedido_id;
-	}
-
-	public double getPreco() {
-		return this.preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public List<Adicional> getAdicionals() {
-		return this.adicionals;
-	}
-
-	public void setAdicionals(List<Adicional> adicionals) {
-		this.adicionals = adicionals;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public List<Ingrediente> getIngredientes() {
@@ -92,6 +66,14 @@ public class ItemPedido implements Serializable {
 		this.ingredientes = ingredientes;
 	}
 
+	public Produto getProduto() {
+		return this.produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
 	public Pedido getPedido() {
 		return this.pedido;
 	}
@@ -100,12 +82,12 @@ public class ItemPedido implements Serializable {
 		this.pedido = pedido;
 	}
 
-	public Produto getProduto() {
-		return this.produto;
+	public List<Adicional> getAdicionals() {
+		return this.adicionals;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setAdicionals(List<Adicional> adicionals) {
+		this.adicionals = adicionals;
 	}
 
 }

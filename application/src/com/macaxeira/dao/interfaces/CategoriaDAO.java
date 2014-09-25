@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.macaxeira.model.Categoria;
 
 @Repository
-public interface CategoriaDAO extends GenericDAO<Categoria,Integer> {
+public interface CategoriaDAO extends GenericDAO<Categoria, Integer> {
 
 	
 }

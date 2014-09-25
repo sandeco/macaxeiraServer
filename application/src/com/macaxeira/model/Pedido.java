@@ -23,29 +23,29 @@ public class Pedido implements Serializable {
 	@Column(name="nome_cliente")
 	private String nomeCliente;
 
-	private double preco;
-
 	//bi-directional many-to-one association to ItemPedido
 	@OneToMany(mappedBy="pedido")
 	private List<ItemPedido> itemPedidos;
-
-	//bi-directional many-to-one association to Atendente
-	@ManyToOne
-	private Atendente atendente;
 
 	//bi-directional many-to-one association to Atendimento
 	@ManyToOne
 	@JoinColumn(name="Atendimento_idAtendimento")
 	private Atendimento atendimento;
 
-	//bi-directional many-to-one association to Cozinheiro
-	@ManyToOne
-	private Cozinheiro cozinheiro;
-
 	//bi-directional many-to-one association to Situacao
 	@ManyToOne
 	@JoinColumn(name="Situacao_id")
 	private Situacao situacao;
+
+	//bi-directional many-to-one association to Cozinheiro
+	@ManyToOne
+	@JoinColumn(name="Cozinheiro_id")
+	private Cozinheiro cozinheiro;
+
+	//bi-directional many-to-one association to Atendente
+	@ManyToOne
+	@JoinColumn(name="Atendente_id")
+	private Atendente atendente;
 
 	public Pedido() {
 	}
@@ -64,14 +64,6 @@ public class Pedido implements Serializable {
 
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
-	}
-
-	public double getPreco() {
-		return this.preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
 	}
 
 	public List<ItemPedido> getItemPedidos() {
@@ -96,20 +88,20 @@ public class Pedido implements Serializable {
 		return itemPedido;
 	}
 
-	public Atendente getAtendente() {
-		return this.atendente;
-	}
-
-	public void setAtendente(Atendente atendente) {
-		this.atendente = atendente;
-	}
-
 	public Atendimento getAtendimento() {
 		return this.atendimento;
 	}
 
 	public void setAtendimento(Atendimento atendimento) {
 		this.atendimento = atendimento;
+	}
+
+	public Situacao getSituacao() {
+		return this.situacao;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		this.situacao = situacao;
 	}
 
 	public Cozinheiro getCozinheiro() {
@@ -120,12 +112,12 @@ public class Pedido implements Serializable {
 		this.cozinheiro = cozinheiro;
 	}
 
-	public Situacao getSituacao() {
-		return this.situacao;
+	public Atendente getAtendente() {
+		return this.atendente;
 	}
 
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
+	public void setAtendente(Atendente atendente) {
+		this.atendente = atendente;
 	}
 
 }

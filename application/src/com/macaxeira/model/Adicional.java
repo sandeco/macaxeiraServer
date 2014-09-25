@@ -34,7 +34,16 @@ public class Adicional implements Serializable {
 	private List<ItemPedido> itemPedidos;
 
 	//bi-directional many-to-many association to Produto
-	@ManyToMany(mappedBy="adicionals")
+	@ManyToMany
+	@JoinTable(
+		name="produto_has_adicional"
+		, joinColumns={
+			@JoinColumn(name="Adicional_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Produto_id")
+			}
+		)
 	private List<Produto> produtos;
 
 	public Adicional() {

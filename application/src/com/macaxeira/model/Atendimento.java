@@ -19,8 +19,6 @@ public class Atendimento implements Serializable {
 	@Column(name="_id")
 	private int id;
 
-	private double preco;
-
 	//bi-directional many-to-one association to Mesa
 	@ManyToOne
 	@JoinColumn(name="Mesa_id")
@@ -28,6 +26,7 @@ public class Atendimento implements Serializable {
 
 	//bi-directional many-to-one association to Situacao
 	@ManyToOne
+	@JoinColumn(name="Situacao_id")
 	private Situacao situacao;
 
 	//bi-directional many-to-one association to Pedido
@@ -43,14 +42,6 @@ public class Atendimento implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public double getPreco() {
-		return this.preco;
-	}
-
-	public void setPreco(double preco) {
-		this.preco = preco;
 	}
 
 	public Mesa getMesa() {
