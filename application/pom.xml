@@ -8,10 +8,20 @@
 
 	<properties>
 		<spring.version>4.0.1.RELEASE</spring.version>
-		<tomcat.version>8.0-SNAPSHOT</tomcat.version>
+		<tomcat.version>8.0.12</tomcat.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
 
+
+
+	<!-- REPOSITÓRIOS 
+	<repositories>
+		<repository>
+			<id>apache-snapshots</id>
+			<url>http://repo2.maven.org/maven2/org/apache/tomcat/</url>
+		</repository>
+	</repositories>
+	-->
 
 	<dependencies>
 
@@ -125,13 +135,6 @@
 	</dependencies>
 
 
-	<!-- REPOSITÓRIOS -->
-	<repositories>
-		<repository>
-			<id>apache-snapshots</id>
-			<url>http://people.apache.org/repo/m2-snapshot-repository/org/apache/tomcat/</url>
-		</repository>
-	</repositories>
 
 
 
