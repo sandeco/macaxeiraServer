@@ -21,6 +21,19 @@ public class ItemPedido implements Serializable {
 
 	private double preco;
 
+	//bi-directional many-to-many association to Adicional
+	@ManyToMany
+	@JoinTable(
+		name="item_pedido_has_adicional"
+		, joinColumns={
+			@JoinColumn(name="Item_Pedido_Item_Pedido_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Adicional__id")
+			}
+		)
+	private List<Adicional> adicionals;
+
 	//bi-directional many-to-many association to Ingrediente
 	@ManyToMany
 	@JoinTable(
@@ -44,19 +57,6 @@ public class ItemPedido implements Serializable {
 	@JoinColumn(name="Produto_id")
 	private Produto produto;
 
-	//bi-directional many-to-many association to Adicional
-	@ManyToMany
-	@JoinTable(
-		name="item_pedido_has_adicional"
-		, joinColumns={
-			@JoinColumn(name="Item_Pedido_Item_Pedido_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Adicional__id")
-			}
-		)
-	private List<Adicional> adicionals;
-
 	public ItemPedido() {
 	}
 
@@ -74,6 +74,14 @@ public class ItemPedido implements Serializable {
 
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+
+	public List<Adicional> getAdicionals() {
+		return this.adicionals;
+	}
+
+	public void setAdicionals(List<Adicional> adicionals) {
+		this.adicionals = adicionals;
 	}
 
 	public List<Ingrediente> getIngredientes() {
@@ -98,14 +106,6 @@ public class ItemPedido implements Serializable {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
-	}
-
-	public List<Adicional> getAdicionals() {
-		return this.adicionals;
-	}
-
-	public void setAdicionals(List<Adicional> adicionals) {
-		this.adicionals = adicionals;
 	}
 
 }

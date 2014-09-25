@@ -33,11 +33,6 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy="produto")
 	private List<ItemPedido> itemPedidos;
 
-	//bi-directional many-to-one association to Categoria
-	@ManyToOne
-	@JoinColumn(name="categoria_id")
-	private Categoria categoria;
-
 	//bi-directional many-to-many association to Adicional
 	@ManyToMany
 	@JoinTable(
@@ -50,6 +45,11 @@ public class Produto implements Serializable {
 			}
 		)
 	private List<Adicional> adicionals;
+
+	//bi-directional many-to-one association to Categoria
+	@ManyToOne
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
 
 	//bi-directional many-to-many association to Ingrediente
 	@ManyToMany
@@ -129,20 +129,20 @@ public class Produto implements Serializable {
 		return itemPedido;
 	}
 
-	public Categoria getCategoria() {
-		return this.categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
 	public List<Adicional> getAdicionals() {
 		return this.adicionals;
 	}
 
 	public void setAdicionals(List<Adicional> adicionals) {
 		this.adicionals = adicionals;
+	}
+
+	public Categoria getCategoria() {
+		return this.categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public List<Ingrediente> getIngredientes() {
